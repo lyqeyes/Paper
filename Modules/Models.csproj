@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,12 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contexts\CookieContext.cs" />
+    <Compile Include="Contexts\IAuthCookie.cs" />
+    <Compile Include="Contexts\QuestionnaireCookieContext.cs" />
+    <Compile Include="Contexts\QuestionnaireUserContext.cs" />
+    <Compile Include="Contexts\UserContext.cs" />
+    <Compile Include="Contexts\UserLoginInfo.cs" />
     <Compile Include="Database\Answer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\Choice.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\DataSourceContext.cs" />
     <Compile Include="Database\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,7 +99,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contexts\" />
     <Folder Include="ControllerBase\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
@@ -120,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Web.Utility\Web.Utility.csproj">
+      <Project>{2e90f2fb-181e-47c4-b8b7-b6cc6ccca468}</Project>
+      <Name>Web.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
