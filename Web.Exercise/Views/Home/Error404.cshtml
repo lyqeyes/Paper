@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error404</title>
+    <style>
+        html{width:100%;height:100%}
+        body{width:100%;height:100%;}
+    </style>
+</head>
+<body>
+    <object width="100%" height="100%">
+        <embed width="100%" height="100%" src="~/Resource/404.swf" id="flash" />
+    </object>
+    @*<script>
+        function changeCSS() {
+            var wid = document.body.clientWidth;
+            var hei = document.body.clientHeight;
+            console.log(wid + " : " + hei);
+            //document.getElementById("flash").height = hei;
+            document.getElementById("flash").width = wid;
+        }
+        window.onload = changeCSS;
+        window.onresize = changeCSS;
+    </script>*@
+</body>
+</html>

@@ -58,7 +58,7 @@ namespace Modules.Contexts
             }
             set
             {
-                Cookie.Save(KeyPrefix + "UerId", value.ToString(), UserExpiresHours);
+                Cookie.Save(KeyPrefix + "UserId", value.ToString(), UserExpiresHours);
             }
         }
 

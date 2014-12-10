@@ -26,5 +26,15 @@ namespace Web.Exercise.Controllers
 
             return View();
         }
+
+        /// <summary>
+        /// 404页面
+        /// </summary>
+        /// <param name="aspxerrprpath"></param>
+        /// <returns></returns>
+        public ActionResult Error404(string aspxerrprpath = "Error")
+        {
+            return View("~/Views/Home/Error404.cshtml", null, aspxerrprpath);
+        }
     }
 }
