@@ -1,0 +1,15 @@
+﻿
+.ImgInList {
+    width: 40px;
+    height: 41px;
+}
+
+
+
+a[disabled="disabled"] {
+    cursor:not-allowed;
+    color:#808080;
+}
+#pages>a {
+    display:none;
+}
