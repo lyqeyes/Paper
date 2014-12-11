@@ -2371,6 +2371,9 @@
     <Content Include="assets\plugins\uniform\README.textile" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\UserOp\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\UserOp\Views\Shared\_Header.cshtml" />
+    <Content Include="Areas\UserOp\Views\Shared\_Left.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2406,8 +2409,6 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\UserOp\Models\" />
-    <Folder Include="Areas\UserOp\Views\Home\" />
-    <Folder Include="Areas\UserOp\Views\Shared\" />
     <Folder Include="assets\plugins\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="Models\" />
     <Folder Include="Views\UserBase\" />
