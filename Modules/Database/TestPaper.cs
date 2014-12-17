@@ -25,6 +25,7 @@ namespace Modules.Database
         public System.DateTime CreateTime { get; set; }
         public int IsEnd { get; set; }
         public int UserId { get; set; }
+        public int DoCount { get; set; }
     
         public virtual ICollection<Question> Questions { get; set; }
         public virtual User User { get; set; }

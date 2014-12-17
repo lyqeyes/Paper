@@ -12,13 +12,14 @@ namespace Web.Exercise.Common
 {
     public class UserBaseController : BaseController
     {
-        public QuestionnaireDBEntities db
-        {
-            get
-            {
-                return DataSourceContext.Current;
-            }
-        }
+        //public QuestionnaireDBEntities db
+        //{
+        //    get
+        //    {
+        //        return DataSourceContext.Current;
+        //    }
+        //}
+        public QuestionnaireDBEntities db = new QuestionnaireDBEntities();
 
         public QuestionnaireCookieContext CookieContext
         {

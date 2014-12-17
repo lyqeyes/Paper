@@ -48,6 +48,10 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcPager, Version=2.0.0.1, Culture=neutral, PublicKeyToken=f6872c5a09aed72c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MvcPager.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -121,7 +125,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\UserOp\Controllers\AuthController.cs" />
+    <Compile Include="Areas\UserOp\Controllers\UAnswerController.cs" />
     <Compile Include="Areas\UserOp\Controllers\UHomeController.cs" />
+    <Compile Include="Areas\UserOp\Models\SaveQuestionModel.cs" />
     <Compile Include="Areas\UserOp\UserOpAreaRegistration.cs" />
     <Compile Include="Common\AdminBaseController.cs" />
     <Compile Include="Common\AuthorizeIgnoreAttribute.cs" />
@@ -2374,6 +2380,10 @@
     <Content Include="Areas\UserOp\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\UserOp\Views\Shared\_Header.cshtml" />
     <Content Include="Areas\UserOp\Views\Shared\_Left.cshtml" />
+    <Content Include="Areas\UserOp\Views\UHome\CreatePaper.cshtml" />
+    <Content Include="Areas\UserOp\Views\UHome\AddQuestions.cshtml" />
+    <Content Include="Areas\UserOp\Views\UAnswer\Paper.cshtml" />
+    <Content Include="Areas\UserOp\Views\UAnswer\ReceivePaper.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -2408,7 +2418,6 @@
     <Folder Include="Areas\Admin\Controllers\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Areas\UserOp\Models\" />
     <Folder Include="assets\plugins\jquery-file-upload\server\php\files\thumbnail\" />
     <Folder Include="Models\" />
     <Folder Include="Views\UserBase\" />

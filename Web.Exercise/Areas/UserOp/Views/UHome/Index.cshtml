@@ -1,18 +1,48 @@
-﻿
-@{
+﻿@{
     Layout = "~/Areas/UserOp/Views/Shared/_Layout.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-        <h1>登录后的首页</h1>
-    </div>
-</body>
-</html>
+@using Webdiyer.WebControls.Mvc
+@using Modules.Database
+@using Modules.Enums
+@model PagedList<TestPaper>
+<div class="h60"></div>
+<table>
+    @if (Model.Count == 0)
+    {
+        <tr>
+            <td>
+                您还没有创建问卷
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <th>序号</th>
+            <th>问卷标题</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        foreach (var item in Model)
+        {
+            <tr>
+                <th>@((int)(Model.IndexOf(item))+1) </th>
+                <th>@item.Title</th>
+                <th>@item.CreateTime</th>
+                <th>
+                    <a href="~/userOP/Uhome/AddQuestions?paperid=@item.Id">编辑(ps:回答过的问卷不能再编辑)</a>
+                    @if (item.IsEnd == (int)EnumTestState.IsEnd)
+                    {
+                        <a href="~/UserOp/Uhome/ChangeState">发布</a>
+                    }
+                    else
+                    {
+                        <a href="~/UserOp/Uhome/ChangeState">暂停</a>
+                    }
+                    <a href="#">分析结果</a>  
+                    <a href="~/userOP/Uhome/DeletePaper?paperid=@item.Id">删除</a>
+                </th>
+            </tr>
+        }
+    }
+</table>

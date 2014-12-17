@@ -94,6 +94,7 @@
     <Compile Include="Database\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enums\EnumMustAnswer.cs" />
     <Compile Include="Enums\EnumQuestionType.cs" />
     <Compile Include="Enums\EnumTestState.cs" />
     <Compile Include="Enums\EnumUserRole.cs" />
