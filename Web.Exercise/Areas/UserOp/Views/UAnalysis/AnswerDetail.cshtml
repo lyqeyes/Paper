@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Areas/UserOp/Views/Shared/_Layout.cshtml";
+}
+@model Modules.Database.Question
+
+<div class="h60"></div>
+<div>
+    <p>问题: @Model.Title</p>
+    <p>回答列表:</p>
+    @if (Model.Answers.Count > 0)
+    {
+        var count = 0;
+        foreach (var item in Model.Answers)
+        {
+            count++;
+            <p>@(count).@item.AnswerContent</p>
+        }
+    }
+    else
+    {
+        <p>这道问答题暂时没有人回答</p>
+    }
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        LeftMenuSelect(0);
+    </script>
+}

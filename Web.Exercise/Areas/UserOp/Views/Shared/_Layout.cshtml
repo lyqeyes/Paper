@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="~/css/common.css" />
     <link type="text/css" rel="stylesheet" href="~/css/buyer.css" />
     @RenderSection("css", required: false)
+    @RenderSection("title", required: false)
     <title>问卷系统</title>
 </head>
 <body class="buyer common">
@@ -28,8 +29,8 @@
     <script type="text/javascript" src="~/js/runlight.js"></script>
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
-        window.onload = init();
-        new RunLight("RunContainer");
+        //window.onload = init();
+        //new RunLight("RunContainer");
     </script>
 </body>
 </html>

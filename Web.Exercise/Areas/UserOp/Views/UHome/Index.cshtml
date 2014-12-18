@@ -22,6 +22,7 @@
             <th>问卷标题</th>
             <th>创建时间</th>
             <th>操作</th>
+            <th>问卷地址</th>
         </tr>
         foreach (var item in Model)
         {
@@ -30,19 +31,90 @@
                 <th>@item.Title</th>
                 <th>@item.CreateTime</th>
                 <th>
-                    <a href="~/userOP/Uhome/AddQuestions?paperid=@item.Id">编辑(ps:回答过的问卷不能再编辑)</a>
                     @if (item.IsEnd == (int)EnumTestState.IsEnd)
                     {
-                        <a href="~/UserOp/Uhome/ChangeState">发布</a>
+                        <input type="button" onclick="Start_Pause(@item.Id)" value="发布" />
                     }
                     else
                     {
-                        <a href="~/UserOp/Uhome/ChangeState">暂停</a>
+                        <input type="button" onclick="Start_Pause(@item.Id)" value="暂停" />
                     }
-                    <a href="#">分析结果</a>  
-                    <a href="~/userOP/Uhome/DeletePaper?paperid=@item.Id">删除</a>
+                    <input type="button" onclick="Delete(@item.Id)" value="删除" />
+                    <a href="~/userOP/Uhome/AddQuestions?paperid=@item.Id"> 编辑 </a>
+                    <a href="~/userop/UAnalysis/Index?paperid=@item.Id">分析结果</a>  
                 </th>
+                <th><input type="text" readonly data-num="@item.Id" value="" style="width:400px;"/> </th>
             </tr>
+            
         }
     }
 </table>
+@section scripts{
+<script>
+    function Delete(id)
+    {
+        if (confirm("确认删除?") == false)
+            return;
+        $.ajax({
+            url: "/UserOp/UHome/DeletePaper",
+            type: "POST",
+            data: {
+                paperid: id
+            },
+            beforeSend: function (XMLHttpRequest) {
+            },
+            success: function (data, textStatus) {
+                var object = $.parseJSON(data);
+                if (object.IsOk == 1) {
+                    location.reload();
+                } else {
+                    alert(object.Msg);
+                }
+            },
+            error: function () {
+                alert("好像出错了，刷新页面重试");
+            }
+        });
+    }
+    function Start_Pause(id)
+    {
+        if (confirm("确认操作?") == false)
+            return;
+        $.ajax({
+            url: "/UserOp/UHome/ChangeState",
+            type: "POST",
+            data: {
+                paperid: id
+            },
+            beforeSend: function (XMLHttpRequest) {
+            },
+            success: function (data, textStatus) {
+                var object = $.parseJSON(data);
+                if (object.IsOk == 1) {
+                    location.reload();
+                } else {
+                    alert(object.Msg);
+                }
+            },
+            error: function () {
+                alert("好像出错了，刷新页面重试");
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        var _con = $("th input[type='text']");
+        var _host = location.host;
+        $.each(_con, function (item) {
+            _con[item].value = _host + "/UserOp/UAnswer/Paper/" + $(_con[item]).data("num");
+            _con[item].onfocus = function()
+            {
+                this.select();
+            }
+        });
+    });
+</script>
+    <script type="text/javascript">
+        LeftMenuSelect(0);
+    </script>
+}

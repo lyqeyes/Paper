@@ -125,8 +125,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\UserOp\Controllers\AuthController.cs" />
-    <Compile Include="Areas\UserOp\Controllers\UAnswerController.cs" />
+    <Compile Include="Areas\UserOp\Controllers\UAnalysisController.cs" />
+    <Compile Include="Areas\UserOp\Controllers\UAnswerController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Areas\UserOp\Controllers\UHomeController.cs" />
+    <Compile Include="Areas\UserOp\Models\MyJsonResult.cs" />
     <Compile Include="Areas\UserOp\Models\SaveQuestionModel.cs" />
     <Compile Include="Areas\UserOp\UserOpAreaRegistration.cs" />
     <Compile Include="Common\AdminBaseController.cs" />
@@ -139,6 +143,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\UserOp\Views\UHome\AddQuestions.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Areas\UserOp\Views\UHome\CreatePaper.cshtml" />
     <Content Include="assets\bootstrap-datetimepicker.min.css" />
     <Content Include="assets\bootstrap-datetimepicker.min.js" />
     <Content Include="assets\bootstrap-datetimepicker.zh-CN.js" />
@@ -2380,10 +2388,12 @@
     <Content Include="Areas\UserOp\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\UserOp\Views\Shared\_Header.cshtml" />
     <Content Include="Areas\UserOp\Views\Shared\_Left.cshtml" />
-    <Content Include="Areas\UserOp\Views\UHome\CreatePaper.cshtml" />
-    <Content Include="Areas\UserOp\Views\UHome\AddQuestions.cshtml" />
     <Content Include="Areas\UserOp\Views\UAnswer\Paper.cshtml" />
     <Content Include="Areas\UserOp\Views\UAnswer\ReceivePaper.cshtml" />
+    <Content Include="Areas\UserOp\Views\UAnalysis\Index.cshtml" />
+    <Content Include="Areas\UserOp\Views\UAnalysis\AnswerDetail.cshtml" />
+    <None Include="Properties\PublishProfiles\questionnaire - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\questionnaire - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

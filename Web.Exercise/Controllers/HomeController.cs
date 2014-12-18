@@ -10,7 +10,7 @@ namespace Web.Exercise.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Login", "Auth", new { area = "UserOp" });
         }
 
         public ActionResult About()

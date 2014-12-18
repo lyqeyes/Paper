@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+@using Modules.Enums
+@using Modules.Database
+@model TestPaper
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MM问卷-@Model.Title</title>
+</head>
+<body>
+    <div>
+        <p>问卷名:@Model.Title </p>
+        <p>说明:@Model.Description </p>
+        @using (Html.BeginForm("ReceivePaper", "UAnswer", FormMethod.Post, new { area = "Userop" }))
+        {
+            <input type="hidden" value="@Model.Id" name="paperid"/>
+            var count = 0;
+            foreach (var item in Model.Questions)
+            {
+                count += 1;
+                <div>
+                    <p>@count:@item.Title @(item.MustAnswer == (int)EnumMustAnswer.MustAnswer ? "(必答)" : "")</p>
+                    <p>
+                        @if (item.QuestionType == (int)EnumQuestionType.Radioselect)
+                        {
+                            foreach (var selectitem in item.SelectItems)
+                            {
+                                <input type="radio" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                            }
+                        }
+                        else if (item.QuestionType == (int)EnumQuestionType.Multiselect)
+                        {
+                            foreach (var selectitem in item.SelectItems)
+                            {
+                                <input type="checkbox" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                            }
+                        }
+                        else
+                        {
+                            <textarea name="@item.Id"></textarea>
+                        }
+                    </p>
+                </div>
+            }
+            <p> <input type="submit" value="提交答案" /> </p>
+        }
+    </div>
+</body>
+</html>

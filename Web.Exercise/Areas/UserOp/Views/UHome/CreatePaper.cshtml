@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Areas/UserOp/Views/Shared/_Layout.cshtml";
+}
+@model Modules.Database.TestPaper
+<div class="h60"></div>
+<div>
+    @using (Html.BeginForm("CratePaper", "Uhome", FormMethod.Post, new { area = "UserOp" }))
+    {
+        <fieldset>
+            <legend>创建问卷</legend>
+            @Html.LabelFor(model => model.Title)
+            <br />
+            @Html.TextBoxFor(model => model.Title)
+            <br />
+            @Html.LabelFor(model => model.Description)
+            <br />
+            @Html.TextAreaFor(model => model.Description)
+            <br />
+            <input type="submit" value="开始创建" />
+        </fieldset>
+    }
+</div>
+@section scripts{
+    <script type="text/javascript">
+    LeftMenuSelect(1);
+    </script>
+}

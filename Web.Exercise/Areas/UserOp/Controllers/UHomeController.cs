@@ -1,5 +1,6 @@
 ﻿using Modules.Database;
 using Modules.Enums;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,15 +91,25 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             }
             return RedirectToAction("AddQuestions", new { paperid = question.PaperId });
         }
-        public ActionResult DelQuestion(int questionid)
+        public string DelQuestion(int questionid)
         {
-            return View();
+            var question = db.Questions.FirstOrDefault(a => a.Id == questionid);
+            if (question != null)
+            {
+                db.Questions.Remove(question);
+                db.SaveChanges();
+                return SerializeResult.SerializeStringResult(1, "删除成功");
+            }
+            else
+            {
+                return SerializeResult.SerializeStringResult(0, "删除失败, 找不到对应问题");
+            }
         }
 
         #endregion
 
         #region 对问卷的系列操作 -- 启动/停止  删除
-        public ActionResult ChangeState(int paperid)
+        public string ChangeState(int paperid)
         {
             var paper = db.TestPapers.FirstOrDefault(a => a.Id == paperid);
             if (paper.IsEnd == (int)EnumTestState.IsEnd)
@@ -108,16 +119,30 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             else {
                 paper.IsEnd = (int)EnumTestState.IsEnd;
             }
-            db.Entry(paper).State = System.Data.Entity.EntityState.Modified;
-            db.SaveChangesAsync();
-            return View();
+            try
+            {
+                db.Entry(paper).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChangesAsync();
+                return SerializeResult.SerializeStringResult(1, "操作成功");
+            }
+            catch (Exception ex)
+            {
+                return SerializeResult.SerializeStringResult(0, "操作失败, 请刷新重试");
+            }
         }
-        public ActionResult DeletePaper(int paperid)
+        public string DeletePaper(int paperid)
         {
             var paper = db.TestPapers.FirstOrDefault(a => a.Id == paperid);
-            db.TestPapers.Remove(paper);
-            db.SaveChanges();
-            return View();
+            if (paper != null)
+            {
+                db.TestPapers.Remove(paper);
+                db.SaveChanges();
+                return SerializeResult.SerializeStringResult(1,"删除成功");
+            }
+            else {
+                return SerializeResult.SerializeStringResult(0, "删除失败, 找不到对应问卷");
+            }
+            
         } 
         #endregion
     }

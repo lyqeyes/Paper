@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Areas/UserOp/Views/Shared/_Layout.cshtml";
+}
+
+@using Modules.Enums
+@using Modules.Database
+@model TestPaper
+<div class="h60"></div>
+<div>
+    <p>问卷名:@Model.Title </p>
+    <p>说明:@Model.Description </p>
+    @{
+        var count = 0;
+        foreach (var item in Model.Questions)
+        {
+            count += 1;
+            <div>
+                <p>@count:@item.Title @(item.MustAnswer == (int)EnumMustAnswer.MustAnswer ? "(必答)" : "")</p>
+                <p>
+                    @if (item.QuestionType == (int)EnumQuestionType.Radioselect)
+                    {
+                        foreach (var selectitem in item.SelectItems)
+                        {
+                            <span> @selectitem.ItemContent (@selectitem.Choices.Count') </span>
+                        }
+                    }
+                    else if (item.QuestionType == (int)EnumQuestionType.Multiselect)
+                    {
+                        foreach (var selectitem in item.SelectItems)
+                        {
+                            <span> @selectitem.ItemContent (@selectitem.Choices.Count') </span>
+                        }
+                    }
+                    else
+                    {
+                        <a href="~/UserOp/UAnalysis/AnswerDetail?questionid=@item.Id">查看所有回答</a>
+                    }
+                </p>
+            </div>
+        }
+    }
+</div>
+@section Scripts{
+
+    <script type="text/javascript">
+        LeftMenuSelect(0);
+    </script>
+}

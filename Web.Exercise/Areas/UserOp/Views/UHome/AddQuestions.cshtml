@@ -1,0 +1,105 @@
+﻿@{
+    Layout = "~/Areas/UserOp/Views/Shared/_Layout.cshtml";
+}
+@using Modules.Enums
+@model IEnumerable<Modules.Database.Question>
+
+@section title{
+        <title>创建问卷</title>
+    }
+<div class="h60"></div>
+<div>
+    <h1>当前问题:</h1>
+    @if (Model.Count() == 0)
+    {
+        <p>无</p>
+    }
+    else
+    {
+        var count = 0;
+        foreach (var item in Model)
+        {
+            count++;
+            <p>
+                <span>问题@(count):@item.Title</span> <span>类型:@item.QuestionType</span> <span>是否必答:@item.MustAnswer</span> <input type="button" onclick="Delete(@item.Id)" value="删除该题" />
+            </p>
+        }
+    }
+</div>
+<hr />
+<div>
+    <h1>新增问题</h1>
+    <form action="/UserOp/UHome/SaveQuestion" method="post">
+        <input type="radio" name="questiontype" checked="checked" value="@EnumQuestionType.Radioselect" />单选
+        <input type="radio" name="questiontype" value="@EnumQuestionType.Multiselect" />多选
+        <input type="radio" name="questiontype" value="@EnumQuestionType.Question" />问答
+        <input type="checkbox" name="mustanswer" value="default" checked hidden />
+        <input type="checkbox" name="mustanswer" value="yes" checked />是否必答
+        <p>问题:<input type="text" name="Title" /></p>
+        <div id="editcontainer">
+            <div id="editarea">
+                <p>选项一:<input type="text" name="selectitems" /></p>
+                <p>选项二:<input type="text" name="selectitems" /></p>
+            </div>
+            <input type="button" value="增加选项" id="addsingleitem" />
+        </div>
+        <input type="hidden" value="@ViewBag.Paperid" name="paperid" />
+        <input type="submit" value="保存该题并继续添加" />
+        <input type="submit" value="保存该题并完成问卷创建" />
+    </form>
+</div>
+
+@section scripts{
+    <script>
+        function on_change() {
+            var items = document.getElementsByName("questiontype");
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].checked == true) {
+                    if (items[i].value == "Question") {
+                        document.getElementById("editcontainer").style.display = "none";
+                    }
+                    else {
+                        document.getElementById("editcontainer").style.display = "block";
+                    }
+                }
+            }
+        }
+
+        $("input[name='questiontype']").click(function () {
+            on_change();
+        });
+
+        $("#addsingleitem").click(function () {
+            var addItem = $("<p>新增选项:<input type='text' name='selectitems' /><input type='button' onclick='$(this).parent().remove()' value='移除' /> </p>");
+            $("#editarea").append(addItem);
+        });
+
+        function Delete(id) {
+            if (confirm("确认删除该题?") == false)
+                return;
+            $.ajax({
+                url: "/UserOp/UHome/DelQuestion",
+                type: "POST",
+                data: {
+                    questionid: id
+                },
+                beforeSend: function (XMLHttpRequest) {
+                },
+                success: function (data, textStatus) {
+                    var object = $.parseJSON(data);
+                    if (object.IsOk == 1) {
+                        location.reload();
+                    } else {
+                        alert(object.Msg);
+                    }
+                },
+                error: function () {
+                    alert("好像出错了，刷新页面重试");
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        LeftMenuSelect(1);
+    </script>
+}
