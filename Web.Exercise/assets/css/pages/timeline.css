@@ -144,15 +144,15 @@ Timeline UI Base
 
 /* The icons */
 .timeline > li .timeline-icon {
-	width: 40px;
-	height: 40px;
+	width: 30px;
+	height: 30px;
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
 	font-size: 1.4em;
-	line-height: 40px;
+	line-height: 30px;
 	-webkit-font-smoothing: antialiased;
 	position: absolute;
 	color: #fff;

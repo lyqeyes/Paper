@@ -260,10 +260,10 @@ a:hover {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  width: 930px;
 }
 .span12 {
-  width: 940px;
+  width: 930px;
 }
 .span11 {
   width: 860px;
@@ -278,7 +278,7 @@ a:hover {
   width: 620px;
 }
 .span7 {
-  width: 540px;
+  width: 530px;
 }
 .span6 {
   width: 460px;
@@ -293,7 +293,7 @@ a:hover {
   width: 220px;
 }
 .span2 {
-  width: 140px;
+  width: 130px;
 }
 .span1 {
   width: 60px;
@@ -308,7 +308,7 @@ a:hover {
   margin-left: 820px;
 }
 .offset9 {
-  margin-left: 740px;
+  margin-left: 730px;
 }
 .offset8 {
   margin-left: 660px;
@@ -323,7 +323,7 @@ a:hover {
   margin-left: 420px;
 }
 .offset4 {
-  margin-left: 340px;
+  margin-left: 330px;
 }
 .offset3 {
   margin-left: 260px;
@@ -621,7 +621,7 @@ h6 small {
 h1,
 h2,
 h3 {
-  line-height: 40px;
+  line-height: 30px;
 }
 h1 {
   font-size: 38.5px;
@@ -834,7 +834,7 @@ pre code {
   border: 0;
 }
 .pre-scrollable {
-  max-height: 340px;
+  max-height: 330px;
   overflow-y: scroll;
 }
 .label,
@@ -1165,7 +1165,7 @@ legend {
   padding: 0;
   margin-bottom: 20px;
   font-size: 21px;
-  line-height: 40px;
+  line-height: 30px;
   color: #333333;
   border: 0;
   border-bottom: 1px solid #e5e5e5;
@@ -2420,7 +2420,7 @@ input[type="submit"].btn.btn-mini {
   background-position: -216px 0;
 }
 .icon-th {
-  background-position: -240px 0;
+  background-position: -230px 0;
 }
 .icon-th-list {
   background-position: -264px 0;
@@ -2480,7 +2480,7 @@ input[type="submit"].btn.btn-mini {
   background-position: -216px -24px;
 }
 .icon-refresh {
-  background-position: -240px -24px;
+  background-position: -230px -24px;
 }
 .icon-list-alt {
   background-position: -264px -24px;
@@ -2540,7 +2540,7 @@ input[type="submit"].btn.btn-mini {
   background-position: -216px -48px;
 }
 .icon-text-width {
-  background-position: -240px -48px;
+  background-position: -230px -48px;
 }
 .icon-align-left {
   background-position: -264px -48px;
@@ -2600,7 +2600,7 @@ input[type="submit"].btn.btn-mini {
   background-position: -216px -72px;
 }
 .icon-backward {
-  background-position: -240px -72px;
+  background-position: -230px -72px;
 }
 .icon-play {
   background-position: -264px -72px;
@@ -2660,7 +2660,7 @@ input[type="submit"].btn.btn-mini {
   background-position: -216px -96px;
 }
 .icon-arrow-left {
-  background-position: -240px -96px;
+  background-position: -230px -96px;
 }
 .icon-arrow-right {
   background-position: -264px -96px;
@@ -2721,7 +2721,7 @@ input[type="submit"].btn.btn-mini {
   width: 16px;
 }
 .icon-comment {
-  background-position: -240px -120px;
+  background-position: -230px -120px;
 }
 .icon-magnet {
   background-position: -264px -120px;
@@ -2782,7 +2782,7 @@ input[type="submit"].btn.btn-mini {
   background-position: -216px -144px;
 }
 .icon-circle-arrow-right {
-  background-position: -240px -144px;
+  background-position: -230px -144px;
 }
 .icon-circle-arrow-left {
   background-position: -264px -144px;
@@ -3360,7 +3360,7 @@ input[type="submit"].btn.btn-mini {
   *z-index: 2;
 }
 .navbar-inner {
-  min-height: 40px;
+  min-height: 30px;
   padding-left: 20px;
   padding-right: 20px;
   background-color: #fafafa;
@@ -3411,7 +3411,7 @@ input[type="submit"].btn.btn-mini {
 }
 .navbar-text {
   margin-bottom: 0;
-  line-height: 40px;
+  line-height: 30px;
   color: #777777;
 }
 .navbar-link {
@@ -3421,7 +3421,7 @@ input[type="submit"].btn.btn-mini {
   color: #333333;
 }
 .navbar .divider-vertical {
-  height: 40px;
+  height: 30px;
   margin: 0 9px;
   border-left: 1px solid #f2f2f2;
   border-right: 1px solid #ffffff;
@@ -3526,7 +3526,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-static-top .container,
 .navbar-fixed-top .container,
 .navbar-fixed-bottom .container {
-  width: 940px;
+  width: 930px;
 }
 .navbar-fixed-top {
   top: 0;
@@ -4164,7 +4164,7 @@ a.thumbnail:hover {
 }
 @-webkit-keyframes progress-bar-stripes {
   from {
-    background-position: 40px 0;
+    background-position: 30px 0;
   }
   to {
     background-position: 0 0;
@@ -4172,7 +4172,7 @@ a.thumbnail:hover {
 }
 @-moz-keyframes progress-bar-stripes {
   from {
-    background-position: 40px 0;
+    background-position: 30px 0;
   }
   to {
     background-position: 0 0;
@@ -4180,7 +4180,7 @@ a.thumbnail:hover {
 }
 @-ms-keyframes progress-bar-stripes {
   from {
-    background-position: 40px 0;
+    background-position: 30px 0;
   }
   to {
     background-position: 0 0;
@@ -4191,12 +4191,12 @@ a.thumbnail:hover {
     background-position: 0 0;
   }
   to {
-    background-position: 40px 0;
+    background-position: 30px 0;
   }
 }
 @keyframes progress-bar-stripes {
   from {
-    background-position: 40px 0;
+    background-position: 30px 0;
   }
   to {
     background-position: 0 0;
@@ -4260,10 +4260,10 @@ a.thumbnail:hover {
   background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  -webkit-background-size: 40px 40px;
-  -moz-background-size: 40px 40px;
-  -o-background-size: 40px 40px;
-  background-size: 40px 40px;
+  -webkit-background-size: 30px 30px;
+  -moz-background-size: 30px 30px;
+  -o-background-size: 30px 30px;
+  background-size: 30px 30px;
 }
 .progress.active .bar {
   -webkit-animation: progress-bar-stripes 2s linear infinite;
@@ -4976,8 +4976,8 @@ a.thumbnail:hover {
   position: absolute;
   top: 40%;
   left: 15px;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   margin-top: -20px;
   font-size: 60px;
   font-weight: 100;
@@ -5375,7 +5375,7 @@ button.close {
     margin-left: 702px;
   }
   .offset10 {
-    margin-left: 640px;
+    margin-left: 630px;
   }
   .offset9 {
     margin-left: 578px;

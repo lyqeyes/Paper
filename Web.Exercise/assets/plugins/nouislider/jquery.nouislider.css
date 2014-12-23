@@ -23,7 +23,7 @@
  *		width or height on the slider.
  */
 	.noUi-base {
-		height: 40px;
+		height: 30px;
 		position: relative;
 		max-width: 100%;
 		max-height: 100%;
@@ -89,7 +89,7 @@
  *		exceptions for the vertical slider as minimal as possible.
  */
 	.noUi-vertical {
-		width: 40px;
+		width: 30px;
 	}
 	.noUi-vertical .noUi-origin {
 		bottom: 0;

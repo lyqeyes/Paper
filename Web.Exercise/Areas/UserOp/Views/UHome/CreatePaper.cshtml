@@ -2,26 +2,75 @@
     Layout = "~/Areas/UserOp/Views/Shared/_Layout.cshtml";
 }
 @model Modules.Database.TestPaper
+
+<link href="~/Content/bootstrap2.css" rel="stylesheet" />
+
 <div class="h60"></div>
-<div>
-    @using (Html.BeginForm("CratePaper", "Uhome", FormMethod.Post, new { area = "UserOp" }))
+
+<div class="part">
+    <p class="position">◆当前位置：新建问卷</p>
+    @using (Html.BeginForm("CratePaper", "Uhome", FormMethod.Post, new { area = "UserOp", id ="createform" }))
     {
-        <fieldset>
-            <legend>创建问卷</legend>
-            @Html.LabelFor(model => model.Title)
-            <br />
-            @Html.TextBoxFor(model => model.Title)
-            <br />
-            @Html.LabelFor(model => model.Description)
-            <br />
-            @Html.TextAreaFor(model => model.Description)
-            <br />
-            <input type="submit" value="开始创建" />
-        </fieldset>
+        <div class="main_part">
+            <div class="single_item">
+                <div class="left_item">
+                    <span>问卷名称</span>
+                </div>
+                <div class="right_item">
+                    <input id="Title" name="Title" type="text" placeholder="问卷名">
+                    <span style="color:red"></span>
+                </div>
+            </div>
+            <div class="single_item">
+                <div class="left_item">
+                    <span>描述</span>
+                </div>
+                <div class="right_item">
+                    <textarea id="Description" name="Description"></textarea>
+                </div>
+            </div>
+
+            <div class="single_item_btn">
+                <input type="submit" class="btn green" value="开始创建" />
+                <span id="errorInfor" style="color:red"></span>
+                <div class="clear"></div>
+            </div>
+        </div>
     }
 </div>
+
+<style>
+    p {
+        margin: 0 0 0px;
+    }
+
+    .main_part {
+        margin-top: 20px;
+    }
+
+    a {
+        color: #ffffff;
+    }
+
+        a:hover {
+            text-decoration: none;
+            color: #ffffff;
+        }
+</style>
+
 @section scripts{
+    <script>
+        $("#createform").submit(function ()
+        {
+            if ($("#Title").val() == "")
+            {
+                $("#Title").next().text("标题不能为空");
+                $("#Title").focus();
+                return false;
+            }
+        });
+    </script>
     <script type="text/javascript">
-    LeftMenuSelect(1);
+        LeftMenuSelect(1);
     </script>
 }

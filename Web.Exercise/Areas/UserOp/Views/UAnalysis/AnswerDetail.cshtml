@@ -1,26 +1,66 @@
 ﻿@{
     Layout = "~/Areas/UserOp/Views/Shared/_Layout.cshtml";
 }
-@model Modules.Database.Question
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Modules.Database.Answer>
 
+<link href="~/css/style.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
 <div class="h60"></div>
 <div>
-    <p>问题: @Model.Title</p>
-    <p>回答列表:</p>
-    @if (Model.Answers.Count > 0)
-    {
+    <a class="a_btn_sm" href="/UserOp/UAnalysis/Index?paperid=@ViewBag.PaperId">返回结果界面</a>
+    <h3 style="text-align: center; margin-top: 1em; margin-bottom: 1em; font-size:20px;"> 问题名:@ViewBag.Title </h3>
+</div>
+<div class="container">
+    <h3 style="margin-left:-2em;">回答列表: </h3>
+    @{
         var count = 0;
-        foreach (var item in Model.Answers)
+        if (Model.Count > 0)
         {
-            count++;
-            <p>@(count).@item.AnswerContent</p>
+            foreach (var item in Model)
+            {
+                count += 1;
+                <div class="wellTitle wellTitle_Answer">
+                    <p>@count:@item.AnswerContent </p>
+                </div>
+            }
+        }
+        else
+        {
+            <p>这道题暂时没有人回答</p>
         }
     }
-    else
-    {
-        <p>这道问答题暂时没有人回答</p>
-    }
+    <div style="text-align:center; margin-left:-2em;">
+        @Html.Pager(Model, new PagerOptions
+                 {
+                     HorizontalAlign = "center",
+                     ShowFirstLast = false,
+                     CssClass = "pagination pagination-sm",
+                     NavigationPagerItemWrapperFormatString = "<li>{0}</li>",
+                     ContainerTagName = "ul",
+                     PageIndexParameterName = "id",
+                     ShowPageIndexBox = false,
+                     PrevPageText = "<<",
+                     NumericPagerItemCount = 3,
+                     Id = "pages",
+                     NextPageText = ">>",
+                     CurrentPagerItemWrapperFormatString = "<li class=\"active\"> <a>{0}</a> </li>",
+                     NumericPagerItemWrapperFormatString = "<li> {0}</li>",
+                 }, new { style = "margin-top:2em;margin-bottom:2em" })
+    </div>
 </div>
+<style>
+    p {
+        margin: 0 0 0px;
+    }
+    a {
+        color: #ffffff;
+    }
+        a:hover {
+            text-decoration: none;
+            color: #ffffff;
+        }
+</style>
 @section Scripts{
     <script type="text/javascript">
         LeftMenuSelect(0);

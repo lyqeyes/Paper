@@ -1,31 +1,69 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
+﻿<!doctype html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="content-language" lang="zh-cn">
+    <title>问卷系统登录</title>
+    <link href="~/Content/bootstrap2.css" rel="stylesheet" />
+    <style>
+        body {
+            color: white;
+        }
+        .main-position {
+            width: 60%;
+            margin: 150px auto;
+        }
+            .main-position .control-group {
+                margin-left: 50px;
+            }
+    </style>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 </head>
 <body>
-    <div>
-        @using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { Ares = "UserOP" }))
-        {
-            <fieldset>
-                <legend>登录</legend>
-                <label>邮箱:</label>
-                <input type="text" name="email"/>
-                <br />
-                <label>邮箱:</label>
-                <input type="password" name="password"/>
-                <br />
-                <input type="submit" value="登录" />
-            </fieldset> 
-        }
+    <div class="container">
+        <div class="main-position">
+            @using (Html.BeginForm("Login", "Auth", FormMethod.Post, new { @class = "form_horizontal", Ares = "UserOP", id="login_form"}))
+            {
+                <fieldset>
+                    <legend>
+                        <img src="~/img/logo01.png" style="margin-bottom: 30px;" />
+                        <span style="color:#0088cc;">登录</span>
+                    </legend>
+                    <p style="color:red" id="Msg">@ViewBag.Msg @TempData["Msg"]</p>
+                    <div class="control-group">
+                        <input type="text" name="email" id="email" placeholder="登录邮箱" class="span4" style="height: 40px;line-height:40px;" />
+                    </div>
+                    <div class="control-group">
+                        <input type="password" name="password" id="password" placeholder="密码" class="span4" style="height: 40px;line-height:40px;" />
+                    </div>
+                    <div class="control-group">
+                        <button type="submit" class="btn btn-primary span2" style="margin-left: 0px;">登录</button>
+                        <p>
+                            <span style="color:#0088cc;line-height:50%; margin-left:30px;margin-top:10px !important;">
+                                <a href="~/Userop/Auth/Register"> 没有帐号? </a>
+                                <a href="~/Userop/Auth/ForgetPassword"> 忘记密码? </a>
+                            </span>
+                        </p>
+                    </div>
+                </fieldset>
+            }
+        </div>
     </div>
-    <p> 没有帐号? <a href="~/Userop/Auth/Register"> 戳我去注册 </a></p>
+    <script>
+        $("#login_form").submit(function () {
+            var email = $("#email").val();
+            var password = $("#password").val();
+            if (email == "" || typeof (email) == 'undefined')
+            {
+                $("#Msg").text("用户名不能为空");
+                return false;
+            }
+            else if (password == "" || typeof (password) == 'undefined')
+            {
+                $("#Msg").text("密码不能为空");
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>

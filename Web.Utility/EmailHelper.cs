@@ -10,33 +10,150 @@ namespace Web.Utility
 {
     public class EmailHelper
     {
-        private EmailHelper()
-		{
-		}
-		private static void SendEmail(string clientHost, string emailAddress, string receiveAddress, string userName, string password, string subject, string body)
-		{
-			MailMessage mailMessage = new MailMessage();
-			mailMessage.From = new MailAddress(emailAddress);
-			mailMessage.To.Add(new MailAddress(receiveAddress));
-			mailMessage.Subject = subject;
-			mailMessage.Body = body;
-			mailMessage.IsBodyHtml = true;
-			mailMessage.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-			SmtpClient smtpClient = new SmtpClient();
-			smtpClient.Host = clientHost;
-			smtpClient.Credentials = new NetworkCredential(userName, password);
-			smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-			try
-			{
-				smtpClient.SendAsync(mailMessage, null);
-			}
-			catch (Exception)
-			{
-			}
-		}
-		public static void SendEmail(string subject, string content)
-		{
-            EmailHelper.SendEmail("smtp.qq.com", "2281880721@qq.com", "lyq@oureda.cn", "2281880721", "18840823312", subject, content);
-		}
+        public static void SendEmail(string subject, string content,string email)
+        {
+            //TODO
+            Email sendemail = new Email();
+            sendemail.mailFrom = "ssdut_wenjuan@163.com";
+            sendemail.mailPwd = "wenjuan";
+            sendemail.mailSubject = "重置密码连接";
+            sendemail.mailBody = content;
+            sendemail.isbodyHtml = true;    //是否是HTML
+            sendemail.host = "smtp.163.com";//如果是QQ邮箱则：smtp:qq.com,依次类推
+            sendemail.mailToArray = new string[] { email };//接收者邮件集合
+            sendemail.Send();
+        }
+    }
+    public class Email
+    {
+        /// <summary>
+        /// 发送者
+        /// </summary>
+        public string mailFrom { get; set; }
+
+        /// <summary>
+        /// 收件人
+        /// </summary>
+        public string[] mailToArray { get; set; }
+
+        /// <summary>
+        /// 抄送
+        /// </summary>
+        public string[] mailCcArray { get; set; }
+
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public string mailSubject { get; set; }
+
+        /// <summary>
+        /// 正文
+        /// </summary>
+        public string mailBody { get; set; }
+
+        /// <summary>
+        /// 发件人密码
+        /// </summary>
+        public string mailPwd { get; set; }
+
+        /// <summary>
+        /// SMTP邮件服务器
+        /// </summary>
+        public string host { get; set; }
+
+        /// <summary>
+        /// 正文是否是html格式
+        /// </summary>
+        public bool isbodyHtml { get; set; }
+
+        /// <summary>
+        /// 附件
+        /// </summary>
+        public string[] attachmentsPath { get; set; }
+
+        public bool Send()
+        {
+            //使用指定的邮件地址初始化MailAddress实例
+            MailAddress maddr = new MailAddress(mailFrom);
+            //初始化MailMessage实例
+            MailMessage myMail = new MailMessage();
+
+
+            //向收件人地址集合添加邮件地址
+            if (mailToArray != null)
+            {
+                for (int i = 0; i < mailToArray.Length; i++)
+                {
+                    myMail.To.Add(mailToArray[i].ToString());
+                }
+            }
+
+            //向抄送收件人地址集合添加邮件地址
+            if (mailCcArray != null)
+            {
+                for (int i = 0; i < mailCcArray.Length; i++)
+                {
+                    myMail.CC.Add(mailCcArray[i].ToString());
+                }
+            }
+            //发件人地址
+            myMail.From = maddr;
+
+            //电子邮件的标题
+            myMail.Subject = mailSubject;
+
+            //电子邮件的主题内容使用的编码
+            myMail.SubjectEncoding = Encoding.UTF8;
+
+            //电子邮件正文
+            myMail.Body = mailBody;
+
+            //电子邮件正文的编码
+            myMail.BodyEncoding = Encoding.Default;
+
+            myMail.Priority = MailPriority.High;
+
+            myMail.IsBodyHtml = isbodyHtml;
+
+            //在有附件的情况下添加附件
+            try
+            {
+                if (attachmentsPath != null && attachmentsPath.Length > 0)
+                {
+                    Attachment attachFile = null;
+                    foreach (string path in attachmentsPath)
+                    {
+                        attachFile = new Attachment(path);
+                        myMail.Attachments.Add(attachFile);
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw new Exception("在添加附件时有错误:" + err);
+            }
+
+            SmtpClient smtp = new SmtpClient();
+            //指定发件人的邮件地址和密码以验证发件人身份
+            smtp.Credentials = new System.Net.NetworkCredential(mailFrom, mailPwd);
+
+
+            //设置SMTP邮件服务器
+            smtp.Host = host;
+
+            try
+            {
+                //将邮件发送到SMTP邮件服务器
+                smtp.Send(myMail);
+                return true;
+
+            }
+            catch (System.Net.Mail.SmtpException ex)
+            {
+                return false;
+            }
+
+        }
+
     }
 }

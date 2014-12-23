@@ -44,14 +44,14 @@
 }
 .gritter-item {
 	display:block;
-	background:url(../images/gritter.png) no-repeat left -40px;
+	background:url(../images/gritter.png) no-repeat left -30px;
 	color:#eee;
 	padding:2px 11px 8px 11px;
 	font-size: 11px;
 	font-family:verdana;
 }
 .hover .gritter-item {
-	background-position:right -40px;
+	background-position:right -30px;
 }
 .gritter-item p {
 	padding:0;

@@ -85,9 +85,6 @@
     <Compile Include="Database\SelectItem.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Database\sysdiagram.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Database\TestPaper.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -99,11 +96,12 @@
     <Compile Include="Enums\EnumTestState.cs" />
     <Compile Include="Enums\EnumUserRole.cs" />
     <Compile Include="Enums\EnumUserState.cs" />
+    <Compile Include="Helpers\ForgetPasswordHelper.cs" />
+    <Compile Include="Helpers\IPHelper.cs" />
+    <Compile Include="Helpers\WebClientHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.Config" />
     <EntityDeploy Include="Database\Model.edmx">

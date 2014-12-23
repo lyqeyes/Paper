@@ -237,7 +237,7 @@ Gritter Notifications
 }
 .gritter-item {
   display: block;
-  background: url(../../plugins/gritter/images/gritter-blue.png) no-repeat left -40px !important;
+  background: url(../../plugins/gritter/images/gritter-blue.png) no-repeat left -30px !important;
 }
 .gritter-close {
   background: url(../../plugins/gritter/images/gritter-blue.png) no-repeat left top !important;

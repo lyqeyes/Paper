@@ -42,6 +42,8 @@ namespace Web.Exercise.Areas.UserOp.Controllers
         [HttpPost]
         public ActionResult CratePaper(TestPaper paper)
         {
+            if (paper.Description == "")
+                paper.Description = "无";
             paper.IsEnd = (int)EnumTestState.IsEnd;
             paper.UserId = UserContext.UserInfo.Id;
             paper.CreateTime = DateTime.Now;
@@ -89,13 +91,25 @@ namespace Web.Exercise.Areas.UserOp.Controllers
                 }
                 db.SaveChanges();
             }
-            return RedirectToAction("AddQuestions", new { paperid = question.PaperId });
+            if (question.WhetherContinue == "over")
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("AddQuestions", new { paperid = question.PaperId });
+            }
         }
         public string DelQuestion(int questionid)
         {
             var question = db.Questions.FirstOrDefault(a => a.Id == questionid);
             if (question != null)
             {
+                foreach (var item in question.SelectItems)
+                {
+                    db.Choices.RemoveRange(item.Choices);
+                }
+                db.SelectItems.RemoveRange(question.SelectItems);
                 db.Questions.Remove(question);
                 db.SaveChanges();
                 return SerializeResult.SerializeStringResult(1, "删除成功");
@@ -135,6 +149,16 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             var paper = db.TestPapers.FirstOrDefault(a => a.Id == paperid);
             if (paper != null)
             {
+                foreach (var item in paper.Questions)
+                {
+                    foreach (var item_2 in item.SelectItems)
+                    {
+                        db.Choices.RemoveRange(item_2.Choices);
+                    }
+                    db.SelectItems.RemoveRange(item.SelectItems);
+                    db.Answers.RemoveRange(item.Answers);
+                }
+                db.Questions.RemoveRange(paper.Questions);
                 db.TestPapers.Remove(paper);
                 db.SaveChanges();
                 return SerializeResult.SerializeStringResult(1,"删除成功");

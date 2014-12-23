@@ -7,46 +7,107 @@
 @section title{
         <title>创建问卷</title>
     }
-<div class="h60"></div>
-<div>
-    <h1>当前问题:</h1>
-    @if (Model.Count() == 0)
-    {
-        <p>无</p>
-    }
-    else
-    {
-        var count = 0;
-        foreach (var item in Model)
-        {
-            count++;
-            <p>
-                <span>问题@(count):@item.Title</span> <span>类型:@item.QuestionType</span> <span>是否必答:@item.MustAnswer</span> <input type="button" onclick="Delete(@item.Id)" value="删除该题" />
-            </p>
-        }
-    }
+    <link href="~/assets/bootstrap.min.css" rel="stylesheet" />
+    <div class="h60"></div>
+    <div class="part">
+        <p class="position">◆当前位置：编辑问卷</p>
+        <div class="line_manage">
+            <h1>当前问题列表:</h1>
+            <div class="line_manage_infor">
+                <table class="table" id="SellingTable">
+                    <thead>
+                        <tr>
+                            <th>标号</th>
+                            <th>问题</th>
+                            <th>类型</th>
+                            <th>是否必答</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fs08 tcenter" id="dingdan">
+                        @if (Model.Count() == 0)
+                        {
+                            <tr>
+                                <th>还没有问题, 快些添加吧</th>
+                            </tr>
+                        }
+                        else
+                        {
+                            var count = 0;
+                            foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <th>@count</th>
+                                    <th>@item.Title</th>
+                                    @if (item.QuestionType == (int)EnumQuestionType.Radioselect)
+                                    {
+                                        <th>单选</th>
+                                    }
+                                    else if (item.QuestionType == (int)EnumQuestionType.Multiselect)
+                                    {
+                                        <th>多选</th>
+                                    }
+                                    else
+                                    {
+                                        <th>问答</th>
+                                    }
+                                    <th>
+                                        @(item.MustAnswer == (int)EnumMustAnswer.MustAnswer? "必答":"可选")
+                                    </th>
+                                    <th>
+                                        <input type="button" class="btn btn-danger btn-sm" onclick="Delete(@item.Id)" value="删除该题" />
+                                    </th>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+        </div>
+    </div>
 </div>
 <hr />
-<div>
-    <h1>新增问题</h1>
-    <form action="/UserOp/UHome/SaveQuestion" method="post">
-        <input type="radio" name="questiontype" checked="checked" value="@EnumQuestionType.Radioselect" />单选
-        <input type="radio" name="questiontype" value="@EnumQuestionType.Multiselect" />多选
-        <input type="radio" name="questiontype" value="@EnumQuestionType.Question" />问答
-        <input type="checkbox" name="mustanswer" value="default" checked hidden />
-        <input type="checkbox" name="mustanswer" value="yes" checked />是否必答
-        <p>问题:<input type="text" name="Title" /></p>
-        <div id="editcontainer">
-            <div id="editarea">
-                <p>选项一:<input type="text" name="selectitems" /></p>
-                <p>选项二:<input type="text" name="selectitems" /></p>
-            </div>
-            <input type="button" value="增加选项" id="addsingleitem" />
+<div class="container">
+    <div class="row">
+        <h1>新增问题:</h1>
+        <div style="border:1px solid #ffd800; padding:10px 10px;" class="col-md-10 offset1">
+            <form action="/UserOp/UHome/SaveQuestion" method="post" role="form" id="questionform">
+                <div class="form-group">
+                    <label>题型: </label>
+                    <input type="radio" name="questiontype" checked="checked" value="@EnumQuestionType.Radioselect" />单选
+                    <input type="radio" name="questiontype" value="@EnumQuestionType.Multiselect" />多选
+                    <input type="radio" name="questiontype" value="@EnumQuestionType.Question" />问答
+                </div>
+                <div class="form-group">
+                    <label for="mustAnswer">是否必答: </label>
+                    <input type="checkbox" name="mustanswer" value="default" checked hidden />
+                    <input type="checkbox" name="mustanswer" value="yes" checked id="mustAnswer" />是否必答
+                </div>
+                <div class="form-group">
+                    <label>问题:</label>
+                    <input type="text" style="width:40em;" name="Title" />
+                </div>
+                <div class="form-group">
+                    <div id="editcontainer">
+                        <div id="editarea">
+                            <label>选项一:</label>
+                            <input type="text" name="selectitems" />
+                            <label>选项二:</label>
+                            <input type="text" name="selectitems" />
+                            <br />
+                        </div>
+                        <input type="button" class="btn btn-warning btn-sm" value="增加选项" id="addsingleitem" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" value="@ViewBag.Paperid" name="paperid" />
+                    <input type="hidden" value="continue" id="whethercontinue" name="whethercontinue" />
+                    <input type="submit" class="btn btn-success btn-sm" value="保存并继续"/>
+                    <input type="submit" class="btn btn-success btn-sm" value="保存并完成" id="overEdit" />
+                </div>
+            </form>
         </div>
-        <input type="hidden" value="@ViewBag.Paperid" name="paperid" />
-        <input type="submit" value="保存该题并继续添加" />
-        <input type="submit" value="保存该题并完成问卷创建" />
-    </form>
+    </div>
 </div>
 
 @section scripts{
@@ -68,9 +129,11 @@
         $("input[name='questiontype']").click(function () {
             on_change();
         });
-
+        $("#overEdit").click(function () {
+            $("#whethercontinue").val("over");
+        })
         $("#addsingleitem").click(function () {
-            var addItem = $("<p>新增选项:<input type='text' name='selectitems' /><input type='button' onclick='$(this).parent().remove()' value='移除' /> </p>");
+            var addItem = $("<p>新增选项:<input type='text' name='selectitems' /><input class='btn btn-danger btn-xs' type='button' onclick='$(this).parent().remove()' value='移除' /> </p>");
             $("#editarea").append(addItem);
         });
 
@@ -98,6 +161,35 @@
                 }
             });
         }
+    </script>
+    <script>
+        $("#questionform").submit(function () {
+            var Title = $("input[name='Title']").val();
+            var selectitems = $("input[name='selectitems']");
+            if (Title == "")
+            {
+                alert("问题标题不能为空");
+                $("input[name='Title']").focus();
+                return false;
+            }
+            
+            //非问答类型题 判断选项非空
+            var items = document.getElementsByName("questiontype");
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].checked == true) {
+                    if (items[i].value != "Question") {
+                        for (var i = 0; i < selectitems.length; i++)
+                        {
+                            if (selectitems[i].value == "")
+                            {
+                                alert("选项不能为空");
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        });
     </script>
     <script type="text/javascript">
         LeftMenuSelect(1);

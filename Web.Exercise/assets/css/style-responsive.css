@@ -184,7 +184,7 @@ Up To Medium Devices
  	}
 
  	.page-sidebar.navbar-collapse {
-  		max-height: 340px;
+  		max-height: 330px;
   	}
 
  	.page-sidebar.navbar-collapse.collapse {
@@ -365,11 +365,11 @@ Extra Small Devices Only
 
 	.header .nav > li > .dropdown-menu.inbox:after, 
 	.header .nav > li > .dropdown-menu.inbox:before {
-		margin-right: 140px;
+		margin-right: 130px;
 	}
 
 	.header .nav > li > .dropdown-menu.inbox {
-  		margin-right: -140px;
+  		margin-right: -130px;
 	}
 
 	.header .nav > li > .dropdown-menu.tasks:after, 

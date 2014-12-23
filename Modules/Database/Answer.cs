@@ -17,6 +17,7 @@ namespace Modules.Database
         public int Id { get; set; }
         public string AnswerContent { get; set; }
         public int QuestionId { get; set; }
+        public string Address { get; set; }
     
         public virtual Question Question { get; set; }
     }

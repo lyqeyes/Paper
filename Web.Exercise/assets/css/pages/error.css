@@ -23,7 +23,7 @@ Error Pages
 }
 
 .page-404 .details {
-  margin-left: 40px;
+  margin-left: 30px;
   display: inline-block;
   padding-top: 0px;
   text-align: left;
@@ -45,7 +45,7 @@ Error Pages
 }
 
 .page-500 .details {
-  margin-left: 40px;
+  margin-left: 30px;
   display: inline-block;
   text-align: left;
 }

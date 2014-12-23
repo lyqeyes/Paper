@@ -52,7 +52,7 @@ body{font-family:"微软雅黑";color:black;}
 .head .right .default{color:#0065B3;}
 /*页面主体部分 part*/
 .part .line{width:100%;height:15px;background-image:url(../images/bg_blueline.gif);}
-.part .top{width:100%;height:40px;background-repeat:no-repeat;background-position:0px 10px;position:relative;font-size:12px;text-indent:2em;}
+.part .top{width:100%;height:30px;background-repeat:no-repeat;background-position:0px 10px;position:relative;font-size:12px;text-indent:2em;}
 .part .nav{position:absolute;bottom:0px;}
 .part .nav a{color:#0065B3;margin:0px 5px 0px 5px;}
 /*页面核心 申请表单填写区域*/
@@ -65,7 +65,7 @@ body{font-family:"微软雅黑";color:black;}
 .part .con{width:900px;margin:10px;}
 .part .con .title{text-align: left;line-height: 14px;font-weight: bold;color: #3e83c6;padding-top: 5px;padding-left:75px;}
 .part .con .data{}
-.part .con .data table{width: 600px;text-align:left;margin-left:240px;line-height:39px;margin-bottom:20px;color:#5b5b5b;}
+.part .con .data table{width: 600px;text-align:left;margin-left:230px;line-height:39px;margin-bottom:20px;color:#5b5b5b;}
 .part .con .data td{position:relative;}
 .part .con .data input[type='radio']{margin-left:20px;margin-right:10px;}
 .part .con .data select{width:300px;height:20px;font-size:12px;color: #5b5b5b;margin-left:20px;}

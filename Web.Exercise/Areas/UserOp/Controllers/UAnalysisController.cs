@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web.Exercise.Common;
+using Webdiyer.WebControls.Mvc;
 
 namespace Web.Exercise.Areas.UserOp.Controllers
 {
@@ -19,10 +20,13 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             return View(paper);
         }
 
-        public ActionResult AnswerDetail(int questionid)
+        public ActionResult AnswerDetail(int questionid,int? id)
         {
             var question = db.Questions.FirstOrDefault(a => a.Id == questionid);
-            return View(question);
+            ViewBag.PaperId = question.PaperId;
+            ViewBag.Title = question.Title;
+            var answers = question.Answers.OrderByDescending(a => a.Id).ToPagedList(id ?? 0, PageSize);
+            return View(answers);
         }
     }
 }

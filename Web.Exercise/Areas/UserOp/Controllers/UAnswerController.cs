@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Web.Exercise.Common;
 using Modules.Enums;
 using Modules.Database;
+using Modules.Helpers;
 namespace Web.Exercise.Areas.UserOp.Controllers
 {
     /// <summary>
@@ -42,6 +43,7 @@ namespace Web.Exercise.Areas.UserOp.Controllers
         /// <returns></returns>
         public ActionResult ReceivePaper()
         {
+            string ip = IPHelper.GetIP();
             var paperid = Int32.Parse(Request.Form["paperid"]);
             var paper = db.TestPapers.FirstOrDefault(a => a.Id == paperid);
 
@@ -75,9 +77,11 @@ namespace Web.Exercise.Areas.UserOp.Controllers
                     }
                 }
                 else {
+                    //string address = IPHelper.GetAddress(IPHelper.GetIP());
                     db.Answers.Add(new Answer { 
                         QuestionId = Int32.Parse(name_id),
-                        AnswerContent = answer
+                        AnswerContent = answer,
+                        Address = "无"
                     });
                 }
             }

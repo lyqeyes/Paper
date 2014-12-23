@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @using Modules.Enums
@@ -11,44 +10,156 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>MM问卷-@Model.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <div>
-        <p>问卷名:@Model.Title </p>
-        <p>说明:@Model.Description </p>
-        @using (Html.BeginForm("ReceivePaper", "UAnswer", FormMethod.Post, new { area = "Userop" }))
-        {
-            <input type="hidden" value="@Model.Id" name="paperid"/>
-            var count = 0;
-            foreach (var item in Model.Questions)
-            {
-                count += 1;
-                <div>
-                    <p>@count:@item.Title @(item.MustAnswer == (int)EnumMustAnswer.MustAnswer ? "(必答)" : "")</p>
-                    <p>
-                        @if (item.QuestionType == (int)EnumQuestionType.Radioselect)
-                        {
-                            foreach (var selectitem in item.SelectItems)
-                            {
-                                <input type="radio" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
-                            }
-                        }
-                        else if (item.QuestionType == (int)EnumQuestionType.Multiselect)
-                        {
-                            foreach (var selectitem in item.SelectItems)
-                            {
-                                <input type="checkbox" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
-                            }
-                        }
-                        else
-                        {
-                            <textarea name="@item.Id"></textarea>
-                        }
-                    </p>
-                </div>
-            }
-            <p> <input type="submit" value="提交答案" /> </p>
-        }
+        <h3 style="text-align: center; margin-top: 1em; margin-bottom: 1em; font-size:24px; font-weight:bolder; ">问卷调查</h3>
     </div>
+    <div class="container">
+        <div class="row my_row">
+            <div class="col-md-10 offset1">
+                <h3 style="margin-left:-2em;">问卷名:@Model.Title </h3>
+                <h4>( 说明:@Model.Description )</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 bs-example">
+                @using (Html.BeginForm("ReceivePaper", "UAnswer", FormMethod.Post, new { area = "Userop" }))
+                {
+                    <input type="hidden" value="@Model.Id" name="paperid" />
+
+                    var count = 0;
+                    foreach (var item in Model.Questions)
+                    {
+                        count += 1;
+                        <div class="questionitem">
+                            <p>@count:@item.Title <span> @(item.MustAnswer == (int)EnumMustAnswer.MustAnswer ? "*" : "") </span></p>
+                            <p class="items">
+                                @if (item.QuestionType == (int)EnumQuestionType.Radioselect)
+                                {
+                                    foreach (var selectitem in item.SelectItems)
+                                    {
+                                        <input type="radio" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                                    }
+                                }
+                                else if (item.QuestionType == (int)EnumQuestionType.Multiselect)
+                                {
+                                    foreach (var selectitem in item.SelectItems)
+                                    {
+                                        <input type="checkbox" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                                    }
+                                }
+                                else
+                                {
+                                    <textarea name="@item.Id"></textarea>
+                                }
+                            </p>
+                        </div>
+                    }
+                    <div class="btn_div">
+                        <p> <input type="submit" class="btn btn-success btn-lg" value="提交答案" /> </p>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+    <style>
+
+        .questionitem {
+            line-height:40px;
+            padding: 20px 10px;
+            border-bottom:1px solid #959595;
+        }
+
+            .questionitem p {
+                font-size:16px;
+                font-family:"微软雅黑";
+                color:#ff6a00;
+            }
+            .questionitem span {
+                color:red;
+            }
+
+            .questionitem .items {
+                color:#0094ff;
+            }
+            .questionitem input {
+                margin-left:1em;
+            }
+
+        .btn_div {
+            text-align:right;
+            padding:10px 10px;
+        }
+
+        .bs-example {
+            -webkit-box-shadow: none;
+            background-color: rgb(255, 255, 255);
+            border-bottom-color: rgb(221, 221, 221);
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-left-color: rgb(221, 221, 221);
+            border-left-style: solid;
+            border-left-width: 1px;
+            border-right-color: rgb(221, 221, 221);
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-top-color: rgb(221, 221, 221);
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            border-top-style: solid;
+            border-top-width: 1px;
+            box-shadow: none;
+            box-sizing: border-box;
+            color: rgb(51, 51, 51);
+            display: block;
+            font-size: 14px;
+            height: auto;
+            line-height: normal;
+            margin-bottom: 15px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 0px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 45px;
+            position: relative;
+            width: 100%;
+        }
+
+            .bs-example:after {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                font-size: 12px;
+                font-weight: 700;
+                color: #959595;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                content: "问卷内容";
+            }
+
+        .my_row {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+            .my_row h3 {
+                font-size: 20px;
+                color: #0026ff;
+                margin: 10px 10px;
+            }
+
+            .my_row h4 {
+                font-size: 18px;
+                color: #0094ff;
+                margin: 10px 10px;
+            }
+    </style>
 </body>
 </html>

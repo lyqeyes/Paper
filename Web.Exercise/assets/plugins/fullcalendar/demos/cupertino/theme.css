@@ -362,7 +362,7 @@
 .ui-icon-arrowstop-1-n { background-position: -192px -32px; }
 .ui-icon-arrowstop-1-e { background-position: -208px -32px; }
 .ui-icon-arrowstop-1-s { background-position: -224px -32px; }
-.ui-icon-arrowstop-1-w { background-position: -240px -32px; }
+.ui-icon-arrowstop-1-w { background-position: -230px -32px; }
 .ui-icon-arrowthick-1-n { background-position: 0 -48px; }
 .ui-icon-arrowthick-1-ne { background-position: -16px -48px; }
 .ui-icon-arrowthick-1-e { background-position: -32px -48px; }
@@ -378,7 +378,7 @@
 .ui-icon-arrowthickstop-1-n { background-position: -192px -48px; }
 .ui-icon-arrowthickstop-1-e { background-position: -208px -48px; }
 .ui-icon-arrowthickstop-1-s { background-position: -224px -48px; }
-.ui-icon-arrowthickstop-1-w { background-position: -240px -48px; }
+.ui-icon-arrowthickstop-1-w { background-position: -230px -48px; }
 .ui-icon-arrowreturnthick-1-w { background-position: 0 -64px; }
 .ui-icon-arrowreturnthick-1-n { background-position: -16px -64px; }
 .ui-icon-arrowreturnthick-1-e { background-position: -32px -64px; }
@@ -414,7 +414,7 @@
 .ui-icon-locked { background-position: -192px -96px; }
 .ui-icon-unlocked { background-position: -208px -96px; }
 .ui-icon-bookmark { background-position: -224px -96px; }
-.ui-icon-tag { background-position: -240px -96px; }
+.ui-icon-tag { background-position: -230px -96px; }
 .ui-icon-home { background-position: 0 -112px; }
 .ui-icon-flag { background-position: -16px -112px; }
 .ui-icon-calendar { background-position: -32px -112px; }
@@ -430,7 +430,7 @@
 .ui-icon-gear { background-position: -192px -112px; }
 .ui-icon-heart { background-position: -208px -112px; }
 .ui-icon-star { background-position: -224px -112px; }
-.ui-icon-link { background-position: -240px -112px; }
+.ui-icon-link { background-position: -230px -112px; }
 .ui-icon-cancel { background-position: 0 -128px; }
 .ui-icon-plus { background-position: -16px -128px; }
 .ui-icon-plusthick { background-position: -32px -128px; }
@@ -446,7 +446,7 @@
 .ui-icon-contact { background-position: -192px -128px; }
 .ui-icon-image { background-position: -208px -128px; }
 .ui-icon-video { background-position: -224px -128px; }
-.ui-icon-script { background-position: -240px -128px; }
+.ui-icon-script { background-position: -230px -128px; }
 .ui-icon-alert { background-position: 0 -144px; }
 .ui-icon-info { background-position: -16px -144px; }
 .ui-icon-notice { background-position: -32px -144px; }

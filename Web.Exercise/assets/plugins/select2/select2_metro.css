@@ -268,7 +268,7 @@ Modifed by keenthemes for Metronic theme integration.
 }
 
 .select2-results ul.select2-result-sub > li .select2-result-label { padding-left: 20px }
-.select2-results ul.select2-result-sub ul.select2-result-sub > li .select2-result-label { padding-left: 40px }
+.select2-results ul.select2-result-sub ul.select2-result-sub > li .select2-result-label { padding-left: 30px }
 .select2-results ul.select2-result-sub ul.select2-result-sub ul.select2-result-sub > li .select2-result-label { padding-left: 60px }
 .select2-results ul.select2-result-sub ul.select2-result-sub ul.select2-result-sub ul.select2-result-sub > li .select2-result-label { padding-left: 80px }
 .select2-results ul.select2-result-sub ul.select2-result-sub ul.select2-result-sub ul.select2-result-sub ul.select2-result-sub > li .select2-result-label { padding-left: 100px }
@@ -551,7 +551,7 @@ disabled look for disabled choices in the results dropdown
   .select2-search input, .select2-search-choice-close, .select2-container .select2-choice abbr, .select2-container .select2-choice .select2-arrow b {
       background-image: url('select2x2.png') !important;
       background-repeat: no-repeat !important;
-      background-size: 60px 40px !important;
+      background-size: 60px 30px !important;
   }
   .select2-search input {
       background-position: 100% -21px !important;

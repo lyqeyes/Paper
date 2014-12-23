@@ -16,5 +16,7 @@ namespace Web.Exercise.Areas.UserOp.Models
         /// </summary>
         public string[] Items { get; set; }
         public string[] MustAnswers { get; set; }
+
+        public string WhetherContinue { get; set; }
     }
 }

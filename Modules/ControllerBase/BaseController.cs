@@ -11,7 +11,7 @@ namespace Modules.ControllerBase
     {
         public virtual int PageSize {
             get {
-                return 15;
+                return 10;
             }
         }
 

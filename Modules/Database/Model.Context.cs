@@ -29,7 +29,6 @@ namespace Modules.Database
         public virtual DbSet<Choice> Choices { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<SelectItem> SelectItems { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TestPaper> TestPapers { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }

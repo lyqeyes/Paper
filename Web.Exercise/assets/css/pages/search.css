@@ -81,7 +81,7 @@ Search Page
 
 .booking-app i {
   color: #fff;
-  font-size: 40px;
+  font-size: 30px;
   line-height: 18px;
 }
 
@@ -97,7 +97,7 @@ Search Page
 .booking-result .booking-img {
   display: inline-block;
   float: left;
-  width: 140px;
+  width: 130px;
   margin-right: 10px;
 }
 
@@ -113,7 +113,7 @@ Search Page
 
 .booking-result .booking-img img {
   float: left;
-  width: 140px;
+  width: 130px;
   height: auto;
   margin: 3px 10px 10px 0;
 }

@@ -150,7 +150,7 @@ div.login a:hover span {
 .nav-global {
 	float: left;
 	width: 645px;
-	margin: 40px 0px 0px 40px;
+	margin: 30px 0px 0px 30px;
 	background-color: transparent;
 }
 
@@ -257,7 +257,7 @@ div.action-text {
 	z-index: 20;
 	color: #FFFFFF;
 	position: absolute;
-	left: 40px;
+	left: 30px;
 	top: 12px;
 	font: 14px tahoma, geneva;
 	padding-top: 30px;
@@ -270,7 +270,7 @@ div.bigbuttons {
 div.action-header {
 	z-index: 21;
 	position: absolute;
-	left: 40px;
+	left: 30px;
 	top: 10px;
 }
 
@@ -364,7 +364,7 @@ div.action-bottom a {
 div.action-bottom a span {
 	position: absolute;
 	top: 15px;
-	left: 40px;
+	left: 30px;
 }
 
 div.action-bottom a span.shadow {
@@ -595,7 +595,7 @@ div.box-purple a {
 #scrollup {
 	position: relative;
 	overflow: hidden;
-	height: 440px;
+	height: 430px;
 	width: 200px
 }
 
@@ -1019,7 +1019,7 @@ div.left-nav-callout a {
 	margin-bottom: 5px;
 	position: relative;
 	z-index: 10;
-	width: 140px;
+	width: 130px;
 }
 
 form table td {
