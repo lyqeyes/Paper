@@ -25,7 +25,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 bs-example">
-                @using (Html.BeginForm("ReceivePaper", "UAnswer", FormMethod.Post, new { area = "Userop" }))
+                @using (Html.BeginForm("ReceivePaper", "UAnswer", FormMethod.Post, new { area = "Userop", id="paperform" }))
                 {
                     <input type="hidden" value="@Model.Id" name="paperid" />
 
@@ -38,21 +38,39 @@
                             <p class="items">
                                 @if (item.QuestionType == (int)EnumQuestionType.Radioselect)
                                 {
+                                    var count_2 = 0;
                                     foreach (var selectitem in item.SelectItems)
                                     {
-                                        <input type="radio" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                                        count_2++;
+                                        if (count_2 == 1)
+                                        {
+                                            <input type="radio" checked name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                                        }
+                                        else { 
+                                            <input type="radio" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                                        }
                                     }
                                 }
                                 else if (item.QuestionType == (int)EnumQuestionType.Multiselect)
                                 {
+                                    var count_2 = 0;
                                     foreach (var selectitem in item.SelectItems)
                                     {
-                                        <input type="checkbox" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                                        count_2++;
+                                        if (count_2 == 1)
+                                        {
+                                            <input type="checkbox" checked name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" name="@selectitem.QuestionId" value="@selectitem.Id" /> @selectitem.ItemContent
+                                        }
                                     }
                                 }
                                 else
                                 {
                                     <textarea name="@item.Id"></textarea>
+                                    <input type="hidden" value="@(item.MustAnswer == (int)EnumMustAnswer.MustAnswer ? "*" : "")" />
                                 }
                             </p>
                         </div>
@@ -160,6 +178,27 @@
                 color: #0094ff;
                 margin: 10px 10px;
             }
+
+        textarea {
+            height:8em;
+            width:60%;
+            resize:none;
+        }
     </style>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        $("#paperform").submit(function () {
+            var areas = $("textarea");
+            for (var i = 0 ; i < areas.length; i++) {
+                if (areas[i].nextElementSibling.value == "*") {
+                    if (areas[i].value == "") {
+                        alert("有必答题还未回答.无法提交");
+                        areas[i].focus();
+                        return false;
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>

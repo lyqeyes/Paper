@@ -91,10 +91,12 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             return RedirectToAction("Login");
         }
 
+        [AuthorizeIgnore]
         public ActionResult ForgetPassword()
         {
             return View();
         }
+        [AuthorizeIgnore]
         [HttpPost]
         public ActionResult ForgetPassword(string email)
         {
