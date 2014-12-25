@@ -105,13 +105,22 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             var question = db.Questions.FirstOrDefault(a => a.Id == questionid);
             if (question != null)
             {
-                foreach (var item in question.SelectItems)
+                if (question.QuestionType == (int)EnumQuestionType.Question)
                 {
-                    db.Choices.RemoveRange(item.Choices);
+                    db.Answers.RemoveRange(question.Answers);
+                    db.Questions.Remove(question);
+                    db.SaveChanges();
                 }
-                db.SelectItems.RemoveRange(question.SelectItems);
-                db.Questions.Remove(question);
-                db.SaveChanges();
+                else
+                {
+                    foreach (var item in question.SelectItems)
+                    {
+                        db.Choices.RemoveRange(item.Choices);
+                    }
+                    db.SelectItems.RemoveRange(question.SelectItems);
+                    db.Questions.Remove(question);
+                    db.SaveChanges();
+                }
                 return SerializeResult.SerializeStringResult(1, "删除成功");
             }
             else
@@ -151,12 +160,18 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             {
                 foreach (var item in paper.Questions)
                 {
-                    foreach (var item_2 in item.SelectItems)
+                    if (item.QuestionType == (int)EnumQuestionType.Question)
                     {
-                        db.Choices.RemoveRange(item_2.Choices);
+                        db.Answers.RemoveRange(item.Answers);
                     }
-                    db.SelectItems.RemoveRange(item.SelectItems);
-                    db.Answers.RemoveRange(item.Answers);
+                    else
+                    {
+                        foreach (var item_2 in item.SelectItems)
+                        {
+                            db.Choices.RemoveRange(item_2.Choices);
+                        }
+                        db.SelectItems.RemoveRange(item.SelectItems);
+                    }
                 }
                 db.Questions.RemoveRange(paper.Questions);
                 db.TestPapers.Remove(paper);
