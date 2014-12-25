@@ -6,14 +6,14 @@
 @using Modules.Enums
 @model PagedList<TestPaper>
 
-<link href="~/assets/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 <div class="h60"></div>
 <div class="part">
     <p class="position">◆当前位置：问卷列表</p>
     <div class="line_manage">
-        <div class="line_manage_infor" id="ManageInfor">
+        <div class="line_manage_infor">
             <div class="h30"></div>
-            <table class="table" id="SellingTable">
+            <table class="table">
                 <thead>
                     <tr>
                         <th>#序号</th>
@@ -24,9 +24,9 @@
                         <th>问卷地址</th>
                     </tr>
                 </thead>
-                <tbody class="fs08 tcenter" id="dingdan">
+                <tbody class="fs08 tcenter">
                     @foreach (var item in Model)
-                    {
+                    { 
                         <tr>
                             <th>@((int)(Model.IndexOf(item)) + 1) </th>
                             <th>@item.Title</th>
@@ -71,6 +71,28 @@
         </div>
     </div>
 </div>
+
+<style>
+    p {
+        margin: 0 0 0px;
+    }
+
+    .main_part {
+        margin-top: 20px;
+    }
+
+    a {
+        color: #ffffff;
+    }
+
+        a:hover {
+            text-decoration: none;
+            color: #ffffff;
+        }
+    .table {
+        font-size:18px;
+    }
+</style>
 
 @section scripts{
 <script>

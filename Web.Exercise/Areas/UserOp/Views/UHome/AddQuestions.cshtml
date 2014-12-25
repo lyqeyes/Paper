@@ -7,14 +7,15 @@
 @section title{
         <title>创建问卷</title>
     }
-    <link href="~/assets/bootstrap.min.css" rel="stylesheet" />
+    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <div class="h60"></div>
     <div class="part">
         <p class="position">◆当前位置：编辑问卷</p>
         <div class="line_manage">
-            <h1>当前问题列表:</h1>
+            <h3>当前问题列表:</h3>
             <div class="line_manage_infor">
-                <table class="table" id="SellingTable">
+                <table class="table" style="font-size:18px;">
                     <thead>
                         <tr>
                             <th>标号</th>
@@ -69,7 +70,7 @@
 <hr />
 <div class="container">
     <div class="row">
-        <h1>新增问题:</h1>
+        <h3>新增问题:</h3>
         <div style="border:1px solid #ffd800; padding:10px 10px;" class="col-md-10 offset1">
             <form action="/UserOp/UHome/SaveQuestion" method="post" role="form" id="questionform">
                 <div class="form-group">

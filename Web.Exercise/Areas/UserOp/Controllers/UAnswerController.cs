@@ -77,6 +77,8 @@ namespace Web.Exercise.Areas.UserOp.Controllers
                     }
                 }
                 else {
+                    if (answer == "")
+                        answer = "(空)";
                     //string address = IPHelper.GetAddress(IPHelper.GetIP());
                     db.Answers.Add(new Answer { 
                         QuestionId = Int32.Parse(name_id),
