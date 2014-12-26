@@ -176,6 +176,8 @@
     <Content Include="images\bg_rmm.png" />
     <Content Include="images\index_logo.png" />
     <Content Include="images\logo.png" />
+    <Content Include="images\logo_blue.png" />
+    <Content Include="images\logo_white.png" />
     <Content Include="js\buyer.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\saler.js" />
