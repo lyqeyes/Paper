@@ -196,6 +196,7 @@
     <Content Include="Areas\UserOp\Views\UAnalysis\Index.cshtml" />
     <Content Include="Areas\UserOp\Views\UAnalysis\AnswerDetail.cshtml" />
     <Content Include="Areas\UserOp\Views\Shared\_Layout.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\questionnaire - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\questionnaire - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

@@ -35,11 +35,11 @@
                             <th>
                                 @if (item.IsEnd == (int)EnumTestState.IsEnd)
                                 {
-                                    <input type="button" onclick="Start_Pause(@item.Id)" value="发布" class="company_btn" />
+                                    <input type="button" onclick="Start_Pause(@item.Id,this)" value="发布" class="company_btn" />
                                 }
                                 else
                                 {
-                                    <input type="button" onclick="Start_Pause(@item.Id)" value="暂停" class="company_btn" />
+                                    <input type="button" onclick="Start_Pause(@item.Id,this)" value="暂停" class="company_btn" />
                                 }
                                 <input type="button" onclick="Delete(@item.Id)" value="删除" class="company_btn" />
                                 <a href="~/userOP/Uhome/AddQuestions?paperid=@item.Id"> <span class="company_btn">编辑</span> </a>
@@ -121,7 +121,7 @@
             }
         });
     }
-    function Start_Pause(id)
+    function Start_Pause(id,dom)
     {
         if (confirm("确认操作?") == false)
             return;
@@ -136,7 +136,8 @@
             success: function (data, textStatus) {
                 var object = $.parseJSON(data);
                 if (object.IsOk == 1) {
-                    location.reload();
+                    //location.reload();
+                    dom.value = dom.value == '发布'?'暂停':'发布';
                 } else {
                     alert(object.Msg);
                 }

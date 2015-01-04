@@ -66,19 +66,27 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             ViewBag.Paperid = paperid;
             return View(questionlist);
         }
+        /// <summary>
+        /// 保存新添加的问题及其先关选项信息
+        /// </summary>
+        /// <param name="question">问题相关信息 模型绑定</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult SaveQuestion(SaveQuestionModel question)
         {
+            //获取系列表单数据
             question.MustAnswers = Request.Form["mustanswer"].Split(',');
             question.Items = Request.Form["selectitems"].Split(',');
+            //创建新的对象并赋值
             var newquestion = new Question();
             newquestion.Title = question.Title;
             newquestion.QuestionType = (int)question.Questiontype;
             newquestion.MustAnswer = question.MustAnswers.Length > 1 ? (int)EnumMustAnswer.MustAnswer : (int)EnumMustAnswer.Selectale;
             newquestion.PaperId = question.PaperId;
+            //保存到数据库
             db.Questions.Add(newquestion);
             db.SaveChanges();
-            //关于选项的处理
+            //关于选择题选项的处理
             if (question.Questiontype != EnumQuestionType.Question)
             {
                 foreach (var item in question.Items)
@@ -91,6 +99,7 @@ namespace Web.Exercise.Areas.UserOp.Controllers
                 }
                 db.SaveChanges();
             }
+            //如果用户结束创建, 则重定向到首页.
             if (question.WhetherContinue == "over")
             {
                 return RedirectToAction("Index");
@@ -100,9 +109,10 @@ namespace Web.Exercise.Areas.UserOp.Controllers
                 return RedirectToAction("AddQuestions", new { paperid = question.PaperId });
             }
         }
+        //删除问题
         public string DelQuestion(int questionid)
         {
-            var question = db.Questions.FirstOrDefault(a => a.Id == questionid);
+            var question = db.Questions.FirstOrDefault(a => a.Id == questionid);  
             if (question != null)
             {
                 if (question.QuestionType == (int)EnumQuestionType.Question)

@@ -21,20 +21,30 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="email">登录邮箱</param>
+        /// <param name="password">密码</param>
+        /// <returns></returns>
         [HttpPost]
         [AuthorizeIgnore]
         public ActionResult Login(string email, string password)
         {
+            //查询数据库
             var logininfo = db.Users.FirstOrDefault(a => a.Email == email && a.Password == password);
+            //如果通过验证
             if (logininfo != null && logininfo.Role == (int)EnumUserRole.Register)
             {
+                //将登录信息写入cookie
                 this.CookieContext.Email = logininfo.Email;
                 this.CookieContext.Role = logininfo.Role;
                 this.CookieContext.UserId = logininfo.Id;
                 this.CookieContext.UserName = logininfo.Name;
-
+                //重定向到首页
                 return RedirectToAction("index", "uhome", new { Area = "UserOp" });
             }
+            //登录不成功, 则报错
             else if (logininfo != null && logininfo.Role != (int)EnumUserRole.Register)
             {
                 ViewBag.Msg = "非用户帐号";
@@ -54,18 +64,22 @@ namespace Web.Exercise.Areas.UserOp.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 用户注册
+        /// </summary>
+        /// <param name="registerInfo">注册信息模型绑定</param>
+        /// <returns></returns>
         [HttpPost]
         [AuthorizeIgnore]
         public ActionResult Register(User registerInfo)
         {
+            //检测邮箱是否已被注册
             if (db.Users.FirstOrDefault(a => a.Email == registerInfo.Email) != null)
             {
                 ViewBag.Msg = "该邮箱已被注册";
                 return View();
             }
-            //registerInfo.CreateTime = DateTime.Now;
-            //registerInfo.Role = (int)EnumUserRole.Register;
-            //registerInfo.State = (int)EnumUserState.IsAble;
+            //如果注册信息合法, 则将注册信息添加到数据库
             var db_2 = new QuestionnaireDBEntities();
             db_2.Users.Add(new User { 
                 Email = registerInfo.Email,
@@ -115,12 +129,14 @@ namespace Web.Exercise.Areas.UserOp.Controllers
 
         [AuthorizeIgnore]
         /// <summary>
-        /// 从邮箱打开的链接
+        /// 从找回密码邮件中打开的重置密码的链接
         /// </summary>
         /// <returns></returns>
         public ActionResult FindPassword(string id)
         {
+            //从Cache中读取临时信息
             var temp = HttpRuntime.Cache.Get(id);
+            //如果链接有效, 则打开重置密码的页面
             if (temp != null)
             {
                 string s = temp.ToString();
@@ -130,11 +146,20 @@ namespace Web.Exercise.Areas.UserOp.Controllers
                     return View(account);
                 }
             }
+            //链接无效则则提示错误
             return Content("链接已失效,请重新执行找回密码操作");
         }
+
+        /// <summary>
+        /// 接收重置密码的信息
+        /// </summary>
+        /// <param name="id">用户ID</param>
+        /// <param name="newPassword">新密码</param>
+        /// <returns></returns>
         [AuthorizeIgnore]
         public ActionResult ResetPassword(string id, string newPassword)
         {
+            //更新用户密码并保存到数据库
             int id_int = Int32.Parse(id);
             var user = db.Users.FirstOrDefault(a => a.Id == id_int);
             user.Password = newPassword;

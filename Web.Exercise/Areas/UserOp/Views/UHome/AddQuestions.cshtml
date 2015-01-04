@@ -154,7 +154,7 @@
             var addItem = $("<p>新增选项:<input type='text' name='selectitems' /><input class='btn btn-danger btn-xs' type='button' onclick='$(this).parent().remove()' value='移除' /> </p>");
             $("#editarea").append(addItem);
         });
-
+        //通过Ajax提交删除请求
         function Delete(id) {
             if (confirm("确认删除该题?") == false)
                 return;
@@ -181,6 +181,7 @@
         }
     </script>
     <script>
+        //表单验证        
         $("#questionform").submit(function () {
             var Title = $("input[name='Title']").val();
             var selectitems = $("input[name='selectitems']");
