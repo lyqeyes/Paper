@@ -42,7 +42,7 @@ namespace Web.Exercise.Areas.UserOp.Controllers
         [HttpPost]
         public ActionResult CratePaper(TestPaper paper)
         {
-            if (paper.Description == "")
+            if (paper.Description == "" || paper.Description == null)
                 paper.Description = "无";
             paper.IsEnd = (int)EnumTestState.IsEnd;
             paper.UserId = UserContext.UserInfo.Id;
